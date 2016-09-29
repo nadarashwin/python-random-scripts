@@ -1,0 +1,42 @@
+#!/usr/bin/python
+
+import time
+import socket
+import subprocess
+
+_ssh_server=""
+_ssh_user=""
+_ssh_pod1_path=""
+_ssh_pod2_path=""
+_ssh_pod3_path=""
+_graphite_server=""
+_graphite_port=""
+_timestamp= int(time.time())
+_metric_name=""
+
+def send_message(met_name, met_value):
+        metric_name = met_name + _metric_name
+        message = "%s %d %d\n" %  (metric_name, metric_value, _timestamp)
+        sock = socket.socket()
+        sock.connect((_graphite_server,_graphite_port))
+        sock.sendall(message)
+        sock.close()
+
+c = "ssh " + _ssh_user + "@" + _ssh_server + " cat " + _ssh_pod1_path
+ssh = subprocess.Popen(c.split(), stdout=subprocess.PIPE)
+for line in ssh.stdout:
+        metric_value = int(line)
+        send_message("pod1.", metric_value)
+
+c = "ssh " + _ssh_user + "@" + _ssh_server + " cat " + _ssh_pod2_path
+ssh = subprocess.Popen(c.split(), stdout=subprocess.PIPE)
+for line in ssh.stdout:
+        metric_value = int(line)
+        send_message("pod2.", metric_value)
+
+c = "ssh " + _ssh_user + "@" + _ssh_server + " cat " + _ssh_pod3_path
+ssh = subprocess.Popen(c.split(), stdout=subprocess.PIPE)
+for line in ssh.stdout:
+        metric_value = int(line)
+        send_message("pod3.", metric_value)
+
