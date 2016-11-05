@@ -1,6 +1,28 @@
 #!/usr/local/bin/python2.7
 # encoding=utf8
 
+
+
+
+
+
+'''
+import re
+v = "aeiou"
+c = "qwrtypsdfghjklzxcvbnm"
+m = re.findall(r'(?<=[%s])([%s]{2,})[%s]' %(c,v,c), raw_input(),re.I)
+print '\n'.join(m or ['-1'])
+
+'''
+
+
+'''
+import re
+m = re.search(r'([a-zA-Z0-9])\1+',raw_input().strip())
+print (m.group(1) if m else -1)
+'''
+
+
 '''
 import re
 print "\n".join(i for i in re.split("[.,]+", raw_input().strip()) if len(i) > 0)
