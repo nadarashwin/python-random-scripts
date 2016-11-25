@@ -9,3 +9,5 @@ alert_difference.py :- reads the whisper file and checks the threshold set. If t
 linux_process_csv.py :- using psutil,csv the script collect all the current process from linux terminal and plots  it in a csv file
 
 python_sort_sort.py :- hackerrank logics learned
+
+mysql_json.py :- qury mysql and dump into a file with json representation
