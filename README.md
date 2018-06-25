@@ -11,3 +11,5 @@ linux_process_csv.py :- using psutil,csv the script collect all the current proc
 python_sort_sort.py :- hackerrank logics learned
 
 mysql_json.py :- qury mysql and dump into a file with json representation
+
+redis_dump_restore.py :- redis dump/restore script 
